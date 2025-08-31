@@ -67,7 +67,13 @@ class WarehouseTransaction(TimestampedModel, CreatedByModel):  # No soft delete
     action_date = models.DateTimeField()
     
     class Meta:
-        db_table = 'warehouse_transactions'
+            db_table = 'warehouse_transactions'
+            constraints = [
+                models.CheckConstraint(
+                    check=~models.Q(from_warehouse=models.F('to_warehouse')),
+                    name='different_warehouses'
+                )
+            ]
     
     def __str__(self):
         return f"{self.item_name} - {self.from_warehouse.code} to {self.to_warehouse.code}"

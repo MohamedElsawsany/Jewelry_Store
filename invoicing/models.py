@@ -35,7 +35,7 @@ class GoldInvoiceItem(models.Model):  # No soft delete and no timestamps (matche
     item_weight = models.DecimalField(max_digits=10, decimal_places=2)
     item_carat = models.DecimalField(max_digits=10, decimal_places=2)
     item_stamp_enduser = models.DecimalField(max_digits=10, decimal_places=2)
-    item_quantity = models.IntegerField()
+    item_quantity = models.BigIntegerField()
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
     item_total_price = models.DecimalField(max_digits=10, decimal_places=2)
     vendor_name = models.CharField(max_length=255)
